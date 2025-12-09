@@ -101,4 +101,14 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("BouncePad"))
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce * 2f);
+
+            SoundManager.Instance.PlaySFX("SQUASH");
+        }
+    }
 }

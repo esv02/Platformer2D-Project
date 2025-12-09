@@ -5,9 +5,9 @@ public class MainMenu : MonoBehaviour
 { 
     public GameObject startMainMenu;
     public GameObject levelSelect;
-    public void StartGame(string sceneMain)
+    public void StartGame(string sceneName)
     {
-        SceneManager.LoadScene(sceneMain);
+        SceneManager.LoadScene(sceneName);
     }
 
     public void GoToLevelSelect()
