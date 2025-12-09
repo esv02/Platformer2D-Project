@@ -56,12 +56,18 @@ public class PlayerController : MonoBehaviour
             {
                 // Normal jump
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
+                // Play jump sound
+                SoundManager.Instance.PlaySFX("JUMP");
             }
             else if (extraJumps > 0)
             {
                 // Extra jump (double or triple depending on extraJumpsValue)
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 extraJumps--; // Reduce available extra jumps
+
+                // Play jump sound
+                SoundManager.Instance.PlaySFX("JUMP");
             }
         }
 

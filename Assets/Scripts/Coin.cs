@@ -9,6 +9,9 @@ public class Coin : MonoBehaviour
             PlayerController player = collision.gameObject.GetComponent<PlayerController>();
             player.coins += 1;
             Destroy(gameObject);
+
+            // Play coin sound
+            SoundManager.Instance.PlaySFX("COIN");
         }
     }
 }
