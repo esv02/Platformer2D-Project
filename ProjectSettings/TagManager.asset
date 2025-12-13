@@ -8,6 +8,9 @@ TagManager:
   - CoinText
   - BouncePad
   - Strawberry
+  - Orange
+  - Banana
+  - Shield
   layers:
   - Default
   - TransparentFX

@@ -1,4 +1,6 @@
+using System.Collections;
 using Unity.VisualScripting;
+using UnityEditor.Build;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -8,26 +10,33 @@ public class PlayerHealth : MonoBehaviour
     // Starting health value for the Player
     public int health = 100;
     public Image healthImage;
-
     // Amount of damage the Player takes when hit
     public int damageAmount = 25;
 
-    // Reference to the Player's SpriteRenderer (used for flashing red)
+    private bool isImmune = false;
     private SpriteRenderer spriteRenderer;
+    private Coroutine coroutine;
+    private Color originalColour;
+
 
     private void Start()
     {
         // Get the SpriteRenderer component attached to the Player
         spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateHealthBar(); //Update HealthBar at start
+        originalColour = spriteRenderer.color;
     }
 
     // Method to reduce health when damage is taken
     public void TakeDamage()
     {
+        if (isImmune)
+        {
+            return;
+        }
         health -= damageAmount; // subtract damage amount
         UpdateHealthBar(); // Update HealthBar each frame
-        StartCoroutine(BlinkRed()); // briefly flash red
+        StartCoroutine(BlinkRed());
 
         // Play hurt sound
         SoundManager.Instance.PlaySFX("HURT");
@@ -36,6 +45,31 @@ public class PlayerHealth : MonoBehaviour
         if (health <= 0)
         {
             Die();
+        }
+    }
+
+    public void ImmunityOn(float duration)
+    {
+        isImmune = true;
+        Invoke(nameof(ImmunityOff), duration);
+
+        StartCoroutine("Flash");
+    }
+
+    private void ImmunityOff()
+    {
+        isImmune = false;
+        spriteRenderer.color = Color.white;
+    }
+
+    private IEnumerator Flash()
+    {
+        while (isImmune)
+        {
+            spriteRenderer.color = new Color(originalColour.r, originalColour.g, originalColour.b, 0f);
+            yield return new WaitForSeconds(0.1f);
+            spriteRenderer.color = Color.white;
+            yield return new WaitForSeconds(0.1f);
         }
     }
 

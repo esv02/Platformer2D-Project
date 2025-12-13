@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public int coins;
+    public GameObject shield;
 
     // --- Movement & Animation ---
     private Animator animator;             // Reference to Animator for controlling animations
@@ -114,6 +115,13 @@ public class PlayerController : MonoBehaviour
         {
             extraJumpsValue = 2;
             Destroy(collision.gameObject);
+            SoundManager.Instance.PlaySFX("POWERUP");
+        }
+        else if (collision.gameObject.tag == "Orange")
+        {
+            shield.SetActive(true);
+            Destroy(collision.gameObject);
+            SoundManager.Instance.PlaySFX("POWERUP");
         }
     }
 }

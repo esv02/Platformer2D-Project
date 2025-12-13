@@ -181,3 +181,9 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d748e3e2327d44018b288b6c2ba6adf4, type: 3}
   - key: COIN
     clip: {fileID: 8300000, guid: 2e1c0edfc97324f3cbdc4ed5f343753b, type: 3}
+  - key: SQUASH
+    clip: {fileID: 8300000, guid: b50a5de5297164efe8ba6d2b0b4b7d4d, type: 3}
+  - key: POWERUP
+    clip: {fileID: 8300000, guid: 73bdaf6fa4a24459eb2b7e420333a198, type: 3}
+  - key: KEY
+    clip: {fileID: 8300000, guid: 8c57384ed2fd44d679f385c64e5bd975, type: 3}

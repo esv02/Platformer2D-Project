@@ -10,6 +10,7 @@ public class Key : MonoBehaviour
         {
             Destroy(door);
             Destroy(gameObject);
+            SoundManager.Instance.PlaySFX("KEY");
         }
     }
 }
