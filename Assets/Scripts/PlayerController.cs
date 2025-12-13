@@ -110,5 +110,10 @@ public class PlayerController : MonoBehaviour
 
             SoundManager.Instance.PlaySFX("SQUASH");
         }
+        else if (collision.gameObject.tag == "Strawberry")
+        {
+            extraJumpsValue = 2;
+            Destroy(collision.gameObject);
+        }
     }
 }
